@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="blog@localhost" uuid="92ce8309-eeb2-4373-a234-23e4d9e29d9c">
+      <database-info product="MariaDB" version="10.3.17-MariaDB-0+deb10u1" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.6.0" dbms="MARIADB" exact-version="10.3.17" exact-driver-version="2.6">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>blog</user-name>
+      <introspection-schemas>*:blog</introspection-schemas>
+    </data-source>
+  </component>
+</project>
