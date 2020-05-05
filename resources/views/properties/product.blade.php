@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container">
+        @if(Auth::user())
+        <a href="{{route('propiedades.index')}}">Atras</a>
+        @else
+            <a href="{{route('/')}}">Atras</a>
+            @endif
 
         <section class="product_style">
             @if($photospropertys)
@@ -67,8 +72,8 @@
                 @endif
                 <h2>{{$property->price}}@if($property->type == "alquiler") @endif€/mes</h2>
 
-                <p class="prueba">Descripcion: {{$property->description}}</p>
-                <p class="prueba">Descripcion: {{$property->referencia}}</p>
+                <p class="prueba">{{$property->description}}</p>
+                <p class="prueba">Direccion: {{$property->direction}} {{$property->city}} {{$property->cp}}</p>
 
                 <iframe
                         width="300"
@@ -82,19 +87,6 @@
                 </iframe>
 
             </div>
-
-        </section>
-        <button onclick="myFunction()">Pulsar</button>
-
-        <section style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr">
-
-
-            <br>
-            <p>Direccion: {{$property->direction}}</p>
-            <p>Ciudad: {{$property->city}}</p>
-            <p>Codigo postal: {{$property->cp}}</p>
-            <p>Ciudad: {{$property->city}}</p>
-
 
         </section>
     </div>
