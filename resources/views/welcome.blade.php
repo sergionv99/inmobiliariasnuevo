@@ -2,9 +2,6 @@
 @section('content')
         <div class="container">
             <div class="content">
-                <div class="title m-b-md">
-                    NUEVOCASAS
-                </div>
                 <div>
                     <article class="buscador">
                     <form action="{{route('buscar')}}">
@@ -19,13 +16,14 @@
                     @foreach($properties as $property)
                             @if(Auth::user())
                                 @if($property->id_user != $user)
+                                    @if($property->published == 0)
                                 <article class="card inmueble">
-                                    <a href="{{route('propiedades.show', $property->id)}}">
+                                    <a class="colores-txt" href="{{route('propiedades.show', $property->id)}}">
                                     <img style="width: 450px" src="{{asset('storage/'.$property->facade)}}">
                                     <article class="grid-menu">
-                                        <div class="txt-prod"><span>{{$property->city}}</span></div>
-                                        <div class="txt-prod">{{$property->direction}}</div>
-                                        <div class="txt-prod">{{$property->price}}€</div>
+                                        <div class="txt-prod"><span class="city">{{$property->city}}</span></div>
+                                        <div class="txt-prod"><span class="direccion">{{$property->direction}}</span></div>
+                                        <div class="txt-prod"><span class="precio">{{$property->price}}€@if($property->state == 'alquiler')/mes @endif</span></div>
 
 
                                         @if(Auth::user())
@@ -57,6 +55,7 @@
                                 </a>
                             </article>
 
+                                @endif
                                 @endif
 
 

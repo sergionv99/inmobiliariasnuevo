@@ -11,7 +11,7 @@
     @foreach($properties as $property)
         @if($property->id_user == $user)
                 <article class="card inmueble">
-                    <a href="{{route('propiedades.show', $property->id)}}">
+                    <a class="colores-txt" href="{{route('propiedades.show', $property->id)}}">
                         <img style="width: 450px" src="{{asset('storage/'.$property->facade)}}">
                         <article class="grid-menu">
                             <div class="txt-prod"><span class="textos-productos">{{$property->referencia}}</span><span class="textos-productos">{{$property->city}}</span></div>
@@ -48,9 +48,10 @@
                     <th>Referencia</th>
                     <th>Fachada</th>
                     <th>Description</th>
-                    <th>DUeño</th>
+                    <th>Dueño</th>
                     <th>Price</th>
                     <th>Type</th>
+                    <th>Estado</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -60,9 +61,14 @@
                     <td>{{$property->referencia}}</td>
                     <td><img style="width: 100px; height: 70px" src="{{asset('storage/'.$property->facade)}}"></td>
                     <td>{{$property->description}}</td>
-                    <td>{{$property->user()->get('name')}}</td>
-                    <td>{{$property->price}}</td>
+                    <td>{{$property->user->name}}</td>
+                    <td>{{$property->price}}€@if($property->state == "alquiler")/mes @endif</td>
                     <td>{{$property->type}}</td>
+                    <td>@if($property->published == 0)
+                        Publicado
+                            @else
+                        No publicado
+                        @endif</td>
                     <td><a class="btn btn-primary" href="{{route('propiedades.edit',$property->id)}}">Edit</a>
 
                     </td>

@@ -1,6 +1,4 @@
-.prueba{
-    color:red;
-}
+
 #slider {
     position: relative;
     overflow: hidden;
@@ -227,7 +225,8 @@ a.control_next {
     padding-top: 5px;
 }
 .inmueble{
-    height: 350px;
+    color: black;
+    height: 453px;
     width: 450px;
 
     display:grid;
@@ -251,4 +250,19 @@ a.control_next {
 }
 .textos-productos{
     color: black;
+}
+.colores-txt{
+    color: black;
+}
+.txt-prod{
+    margin-left: 10px;
+}
+.city{
+    font-size: 10pt;
+}
+.direccion{
+    font-size: 16pt;
+}
+.precio{
+    font-size: 18pt;
 }

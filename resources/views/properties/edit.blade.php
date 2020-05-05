@@ -7,8 +7,8 @@
             @csrf
             @method('PUT')
             <br/>
-            <label for="state">Que quieres hacer</label>
 
+            <label for="state">Que quieres hacer</label>
             <select name="state" id="state">
                 @if($property->state == "venta");
                 <option value="venta" selected="selected">Venta</option>
@@ -30,6 +30,7 @@
                     <option value="piso" selected="selected">Piso</option>
                     @endif
             </select>
+            <br>
 
             <label for="description">Descripcion </label>
             <input type="text" name="description" value="{{$property->description}}" class="form form-control">
@@ -59,7 +60,7 @@
             <input type="file" name="photo[]" multiple>
 
             <label for="published">Publicar</label>
-            <input type="checkbox" name="published" multiple>
+            <input type="checkbox" name="published" @if($property->published == 0) checked @endif >
 
             <input type="submit" class="btn btn-primary" value="Crear">
             <br/>
@@ -83,7 +84,7 @@
             <form action="{{route('propiedades.destroy', $property->id)}}"method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Eliminar</button>
+                <button class="btn btn-danger" type="submit">Eliminar</button>
             </form>
 
 

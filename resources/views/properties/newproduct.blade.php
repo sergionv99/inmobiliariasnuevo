@@ -53,6 +53,17 @@
             <label for="published">Publicar</label>
             <input type="checkbox" name="published" multiple>
 
+            <label for="owner_id">Propietario</label>
+
+            @if(Auth::user()->hasRole('admin'))
+                <input list="users" name="owner_id">
+                <datalist id="users">
+            @foreach($users as $user)
+                 <option value="{{$user->id}}">{{$user->email}}</option>
+                @endforeach
+                </datalist>
+                @endif
+
             <input type="submit" class="btn btn-primary" value="Crear">
             <br/>
             <br/>

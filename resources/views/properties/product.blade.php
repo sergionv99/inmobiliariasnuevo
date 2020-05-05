@@ -3,14 +3,15 @@
 @section('content')
 
     <div class="container">
-        <h1>NUEVOCASAS</h1>
 
         <section class="product_style">
+            @if($photospropertys)
             <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
                 <div class="carousel-inner">
                     @php
                         $tam =0;
                     @endphp
+
                     @foreach($photospropertys as $photos)
                         {{--                    <p>{{$tam}}</p>--}}
 
@@ -22,7 +23,10 @@
 
                     @endforeach
 
+
+
                 </div>
+
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" >
 
@@ -33,8 +37,7 @@
 </svg>
 
 </span>
-
-                </a>
+</a>
                 <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" style="margin-right:25px">
 
@@ -49,19 +52,20 @@
 </span>
 
                 </a>
+                @endif
             </div>
+
             <div>
                 @if($property->type == "casa" && $property->state=="venta")
-                    <p>{{$property->type}} a la {{$property->state}} en {{$property->city}}</p>
-                @elseif($property->type == "casa" && $property->state=="alquiler"))
-                <p>{{$property->type}} {{$property->state}} en {{$property->city}}</p>
-                @elseif($property->type == "piso" && $property->state=="alquiler"))
-                <p>{{$property->type}} {{$property->state}} en {{$property->city}}</p>
+                    <p>{{$property->type}} a la {{$property->state}} en {{$property->city}} (referencia: {{$property->referencia}})</p>
+                @elseif($property->type == "casa" && $property->state=="alquiler")
+                <p>{{$property->type}} {{$property->state}} en {{$property->city}} (referencia: {{$property->referencia}})</p>
+                @elseif($property->type == "piso" && $property->state=="alquiler")
+                <p>{{$property->type}} {{$property->state}} en {{$property->city}} (referencia: {{$property->referencia}})</p>
                 @elseif($property->type == "piso" && $property->state=="venta")
-                    <p>{{$property->type}} a la {{$property->state}} en {{$property->city}}</p>
-
+                    <p>{{$property->type}} a la {{$property->state}} en {{$property->city}} (referencia: {{$property->referencia}})</p>
                 @endif
-                <h2>{{$property->price}} €</h2>
+                <h2>{{$property->price}}@if($property->type == "alquiler") @endif€/mes</h2>
 
                 <p class="prueba">Descripcion: {{$property->description}}</p>
                 <p class="prueba">Descripcion: {{$property->referencia}}</p>

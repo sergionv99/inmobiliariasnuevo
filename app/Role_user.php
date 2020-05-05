@@ -4,24 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Role_user extends Model
 {
+    protected $fillable = ['role_id'];
 
-    protected $fillable = [
-        'name', 'description',
-    ];
+    protected $table = 'role_user';
 
-    public function users()
-    {
+    public function users(){
         return $this
             ->belongsToMany('App\User')
             ->withTimestamps();
     }
 
-    public function role_user(){
+    public function roles(){
         return $this
-            ->hasMany('App\Role_user')
+            ->belongsToMany('App\Role')
             ->withTimestamps();
     }
-
 }

@@ -1,32 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>NUEVOCASAS</h1>
 
-{{--        <a href="{{route('usuarios.create'}}">--}}
-{{--        Crear Usuarios--}}
-{{--        </a>--}}
-        <a class="btn btn-primary links-cortos" href="{{route('usuarios.create')}}">Crear Propiedad </a>
-        <section class="users_list">
+
+    <div class="col-lg-12">
+        <h1 class="my-4">Usuarios</h1>
+        <a class="btn btn-primary" style="margin-bottom: 5px" href="{{route('usuarios.create')}}">Nuevo usuario</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th></th>
+                <th></th>
+            </tr>
             @foreach($users as $user)
-                <a href="{{route('usuarios.show', $user->id)}}">
-                <article>
-                    <article>
+                @foreach ($user->roles as $role)
 
-                        <h1>{{$user->name}}</h1>
-                        <p>{{$user->email}}</p>
-                    </article>
+                <tr>
 
-                </article>
-                </a>
-                <form action="{{route('usuarios.destroy', $user->id)}}"method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Eliminar</button>
-                </form>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$role->name}}</td>
+                    <td><a class="btn btn-primary" href="{{route('usuarios.edit',$user->id)}}">Editar</a>
+                    </td>
+                    <td><form action="{{route('usuarios.destroy', $user->id)}}"method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                        </form></td>
+                </tr>
+
+                @endforeach
             @endforeach
 
-        </section>
+
+            </thead>
+        </table>
     </div>
+
+
 @endsection

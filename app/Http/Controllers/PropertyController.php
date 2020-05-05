@@ -34,12 +34,12 @@ class PropertyController extends Controller
      *https://www.youtube.com/watch?v=Y5Le4maNdM4
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
 
 //        $property=Propierty::find($id);
-//        $users=User::all();
-        return view('properties.newproduct');
+        $users=User::all();
+        return view('properties.newproduct',compact('users'));
     }
 
     /**
@@ -60,6 +60,7 @@ class PropertyController extends Controller
             $published=1;
         }
 
+
         $facadeF=$request->file('facade');
         $facade=$facadeF->store('photos','public');
 
@@ -71,8 +72,13 @@ class PropertyController extends Controller
         $id= $p['id']+1;
         $ref = $cod.$id;
 
+        if($request->owner_id){
+            $id_user = $request->owner_id;
+        }else{
+            $id_user = auth()->user()->id;
+        }
 
-        $id_user = auth()->user()->id;
+
 
       $propiedad = Propierty::create([
             'type'=>$request->type,
@@ -93,13 +99,15 @@ class PropertyController extends Controller
 
         $photos = $request->file('photo');
 
-        foreach($photos as $photo){
-            $path= $photo->store('photos','public');
-            Properties_photos::create([
-                'propiedad_id' => $propiedad->id,
-                'photo' => $path
-            ]);
+        if($photos) {
+            foreach ($photos as $photo) {
+                $path = $photo->store('photos', 'public');
+                Properties_photos::create([
+                    'propiedad_id' => $propiedad->id,
+                    'photo' => $path
+                ]);
 
+            }
         }
 
 
@@ -129,6 +137,8 @@ class PropertyController extends Controller
         $cordenadas = $cord->getGeocodeData($dir);
         $latitud = $cordenadas[0];
         $longitud = $cordenadas[1];
+
+
 
 
         $photospropertys = $property->photos()->get('photo');
