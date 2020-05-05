@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+    <div>
+        @include('layouts.flash-message')
+
+    </div>
 
     @if(Auth::user()->hasRole('user'))
     <a class="btn btn-primary links-cortos" href="{{route('propiedades.create')}}">Crear Propiedad </a>
@@ -54,6 +58,7 @@
                     <th>Estado</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 @foreach($properties as $property)
                 <tr>
@@ -72,6 +77,11 @@
                     <td><a class="btn btn-primary" href="{{route('propiedades.edit',$property->id)}}">Edit</a>
 
                     </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{route('propiedades.show',$property->id)}}">Ver</a>
+
+                    </td>
+
                     <td><form action="{{route('propiedades.destroy', $property->id)}}"method="POST">
                             @csrf
                             @method('DELETE')

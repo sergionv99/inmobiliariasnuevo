@@ -22,7 +22,7 @@
             </select>
             @endif
 
-            <input type="submit" class="btn btn-primary" value="Crear">
+            <input type="submit" class="btn btn-primary" value="Actualizar">
             <br/>
             <br/>
         </form>

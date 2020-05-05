@@ -111,7 +111,7 @@ class PropertyController extends Controller
         }
 
 
-        return redirect()->route('propiedades.index');
+        return redirect()->route('propiedades.index',)->with('success','Se ha añadido una propiedad');
 //        $a = $request->type;
 //        echo "<pre>";
 //        var_dump($a);

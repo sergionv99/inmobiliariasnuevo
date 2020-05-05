@@ -73,8 +73,9 @@
                 <h2>{{$property->price}}@if($property->type == "alquiler") @endif€/mes</h2>
 
                 <p class="prueba">{{$property->description}}</p>
+                <a href="tel:603540580">Mas informacion</a>
                 <p class="prueba">Direccion: {{$property->direction}} {{$property->city}} {{$property->cp}}</p>
-
+s
                 <iframe
                         width="300"
                         height="170"

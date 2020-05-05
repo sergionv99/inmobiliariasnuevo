@@ -136,8 +136,6 @@ class UserController extends Controller
         }
 
 
-
-
         if($request->role != null){
             $role = $request->role;
 
