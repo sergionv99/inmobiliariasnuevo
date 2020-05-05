@@ -22,6 +22,9 @@ class PropertyController extends Controller
 
         $user = auth()->user()->id;
         $properties= Propierty::all();
+//        $duenyo = $properties->user()->get('email');
+//        var_dump()
+
         return view('properties.index',compact('properties', 'user'));
 
     }
@@ -48,7 +51,7 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
 
-        $id_user = auth()->user()->id;
+
 
         if($request->published != null){
             $published = 0;
@@ -59,8 +62,17 @@ class PropertyController extends Controller
 
         $facadeF=$request->file('facade');
         $facade=$facadeF->store('photos','public');
-//
-//        var_dump($facadeF);
+
+
+        $p = Propierty::orderBy('id','desc')->first();
+
+        $cod= substr($request->city,0, 2 );
+
+        $id= $p['id']+1;
+        $ref = $cod.$id;
+
+
+        $id_user = auth()->user()->id;
 
       $propiedad = Propierty::create([
             'type'=>$request->type,
@@ -74,7 +86,8 @@ class PropertyController extends Controller
             'province'=>$request->province,
             'published'=>$published,
             'area'=>$request->area,
-            'facade'=>$facade
+            'facade'=>$facade,
+            'referencia'=> $ref
 
         ]);
 
@@ -106,9 +119,6 @@ class PropertyController extends Controller
     public function show($id)
     {
 
-
-
-
         $property=Propierty::find($id);
 
 
@@ -126,10 +136,6 @@ class PropertyController extends Controller
             $total = count($photospropertys);
         }
 
-
-
-
-
         return view('properties.product',compact('property',
             'photospropertys', 'total','latitud','longitud'));
 
@@ -144,8 +150,21 @@ class PropertyController extends Controller
     public function edit($id)
     {
         $property=Propierty::find($id);
+        $photospropertys = $property->photos()->get('photo');
+
+
+//        $ph = Propierty::where();
+
+//
+//
+//        $ph = Properties_photos::where('propiedad_id' ,'=' ,$id)->get('id');
+//
+//        echo "pre";
+//        var_dump($ph);
+//        die();
+
         $users=User::all();
-        return view('properties.edit',compact('property','users'));
+        return view('properties.edit',compact('property','users','photospropertys'));
 
         //
     }
@@ -160,12 +179,40 @@ class PropertyController extends Controller
     public function update(Request $request, $id)
     {
 
+        if($request->published != null){
+            $published = 0;
+
+        }else{
+            $published=1;
+        }
+
+
 
         $property = Propierty::find($id);
+
+        if($request->file('facade')){
+            $facadeF=$request->file('facade');
+            $facade=$facadeF->store('photos','public');
+        }
+
+        else{
+            $facade=$property['facade'];
+        }
+
+
         //Convertir el Strin recibido a input para que funcione el update
         $precio = (int)$request->price;
         $property->update(['city' => $request->city,
-            'price' => $precio
+            'price' => $precio,
+            'type' => $request->type,
+            'state'=> $request->state,
+            'description' => $request->description,
+            'area' => $request->area,
+            'direction' => $request->direction,
+            'cp' => $request->cp,
+            'published' => $published,
+            'facade' => $facade
+
 //            'id_user'=>$request->id_user
         ]);
 

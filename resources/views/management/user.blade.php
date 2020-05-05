@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('propiedades.destroy', $property->id)}}"method="POST">
+    <form action="{{route('propiedades.destroy', $user->id)}}"method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Eliminar</button>

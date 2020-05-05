@@ -67,16 +67,7 @@ a.control_next {
     font-size: 18px;
 }
 
-.carousel-control-prev-icon:after {
-    content: '<';
-    font-size: 55px;
-    color: red;
-}
-.carousel-control-next-icon:after {
-    content: '>';
-    font-size: 55px;
-    color: red;
-}
+
 .carousel{
     width: 500px!important;
 }
@@ -102,12 +93,6 @@ a.control_next {
 
 #map {
     height: 100%;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
 }
 #description {
     font-family: Roboto;
@@ -178,4 +163,92 @@ html, body {
 }
 #target {
     width: 345px;
+}
+
+
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+.grid-menu{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+}
+.alinear{
+
+    display: flex;
+    flex-direction: row;
+}
+.im_svgs{
+    transform:scale(1.0);
+    margin-top: 3px;
+}
+#salir{
+    padding-left: 12px;
+}
+.txt_enlaces{
+    padding-top: 5px;
+}
+.inmueble{
+    height: 350px;
+    width: 450px;
+
+    display:grid;
+    grid-template-columns: 1fr;
+}
+.txt_prod{
+    height: 10px
+}
+.base_prod{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 55px;
+}
+.buscador{
+    text-align: center;
+}
+.links-cortos{
+    width: 85px!important;
+    height: 38px;
+}
+.textos-productos{
+    color: black;
 }

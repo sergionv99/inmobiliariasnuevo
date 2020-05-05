@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Propierty;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,10 +27,46 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $properties= Propierty::all();
-//        $request->user()->authorizeRoles(['user', 'admin']);
-       return view('welcome',compact('properties'));
-//        return view('home');
+        if(auth()->user()){
+            $user = auth()->user()->id;
 
+            return view('welcome',compact('properties','user'));
+        }
+        else{
+            return view('welcome',compact('properties'));
 
+        }
     }
+
+    public function busqueda(Request $request)
+    {
+        $input = $request->all();
+
+        $busqueda =$request->search;
+
+        $properties= Propierty::all();
+
+        if($busqueda){
+            $properties = Propierty::where("city", "LIKE", "%{$request->get('search')}%")
+            ->orWhere("direction", "LIKE", "%{$request->get('search')}%")
+            ->orWhere("referencia", "LIKE", "%{$request->get('search')}%")
+
+                ->paginate(25);
+
+            if(auth()->user()){
+                $user = auth()->user()->id;
+
+                return view('welcome',compact('properties','user','busqueda'));
+            }
+            else{
+                return view('welcome',compact('properties','busqueda'));
+
+            }
+
+        }
+    }
+
+
+
+
 }

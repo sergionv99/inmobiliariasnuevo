@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('/');
+
+Route::get('search', 'HomeController@busqueda')->name('buscar');
 
 //Route::get('manolo', function(){
 //    return response('<h1>Hola</h1>', 200)
@@ -32,7 +34,17 @@ Route::get('salir',function(){
 
 
 Route::resource('propiedades','PropertyController');
+
 Route::resource('usuarios','UserController');
+
+Route::resource('fotografias','UserController');
+
+//Route::delete('fotografia/{id}','PhotosPropertyController@destroy')->name('photo.destroy');
+
+
+//Route::resource('/','HomeController');
+
+//Route::get('buscar','Homeontroller@busqueda')->name('buscar');
 
 
 //Route::resource('propiedades','PropertyController');

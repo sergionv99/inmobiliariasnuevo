@@ -26,7 +26,7 @@ class CreatePropiertiesTable extends Migration
                 $table->string('province', 255);
                 $table->integer('cp');
                 $table->boolean('published');
-                $table->foreign('id_user')->references('id')->on('users');
+                $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');;
 
             $table->timestamps();
         });

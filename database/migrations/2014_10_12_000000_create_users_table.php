@@ -1,4 +1,4 @@
-<?php
+<?php $table->foreign('propiedad_id')->references('id')->on('propierties')->onDelete('cascade');
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

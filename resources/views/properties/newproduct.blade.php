@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+    <div class="container">
 
         <h1 class="my-4">Property edit</h1>
         <form action="{{route('propiedades.store')}}" method="POST" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
             <input type="text" name="province" class="form form-control">
 
             <label for="facade">Portada</label>
-            <input type="file" name="facade" class="form form-control">
+            <input type="file" name="facade">
 
             <label for="photo">Imagenes</label>
             <input type="file" name="photo[]" multiple>

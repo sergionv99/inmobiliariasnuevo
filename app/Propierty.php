@@ -12,7 +12,7 @@ class Propierty extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'price', 'type', 'state','description','area','direction','city','province','cp','created_at','facade','published',
+        'id_user', 'price', 'type', 'state','description','area','direction','city','province','cp','created_at','facade','published','referencia',
     ];
     public function user(){
         return $this->belongsTo('App\User','id_user');

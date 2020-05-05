@@ -2,32 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
 use Illuminate\Http\Request;
-use App\Propierty;
-use App\User;
-use Illuminate\Support\Facades\Hash;
+use app\Properties_photos;
 
-class UserController extends Controller
+class PhotosPropertyController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
-    }
-
-    public function index(Request $request)
-    {
-        $request->user()->authorizeRoles(['admin']);
-        $users=User::all();
-
-        return view('management.index',compact('users'));
+        //
     }
 
     /**
@@ -37,9 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
-        return view('management.newuser');
-
+        //
     }
 
     /**
@@ -50,23 +35,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->user()->authorizeRoles(['admin']);
-        $rol = $request->role;
-
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
-
-        $user
-            ->roles()
-            ->attach(Role::where('name', $rol)->first());
-
-        return redirect()->route('usuarios.index');
-
+        //
     }
 
     /**
@@ -77,17 +46,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
-        $user = User::find($id);
-        return view('management.user', compact('user'));
-    }
-
-    public function perfil()
-    {
-        $id_user = auth()->user()->id;
-        $user = User::find($id_user);
-        return view('welcome', compact( 'user'));
-
+        //
     }
 
     /**
@@ -121,8 +80,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->route('usuarios.index');
+        $photo = Properties_photos::find($id);
+        $photo->delete();
     }
 }
